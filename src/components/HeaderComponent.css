@@ -1,0 +1,53 @@
+header{
+    padding-left: 30px;
+    background-color: #0077FF;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    margin-right: 30px;
+}
+
+img{
+    width: 60px;
+    height: 70px;
+}
+
+a{
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 24px;
+    color: white;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+a:hover{
+    color: #F0C808;
+}
+
+.authContainer{
+    color: white;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.logInIcon{
+    font-size: 38px;
+    transition: 0.2s;
+}
+
+.authContainer:hover .logInIcon{
+    color: #F0C808;
+}

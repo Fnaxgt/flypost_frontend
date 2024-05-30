@@ -1,0 +1,78 @@
+.pageLogo{
+    width: 125px;
+    height: 150px;
+}
+
+.container{
+    margin-top: 15px;
+}
+
+.container h1{
+    font-size: 118px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.container h2{
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.container h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.downloadButton{
+    background-color: #0077FF;
+    display: inline-block;
+    color: white;
+    padding: 10px 20px;
+    margin: 50px 0;
+    border: none;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.downloadButton:hover{
+    background-color: #0055FF;
+}
+
+.downloadButton a span{
+    margin-right: 15px;
+}
+
+.downloadButton a:hover{
+    color: white;
+}
+
+.downloadIcon{
+    transition: 0.2s;
+}
+
+.downloadButton:hover .downloadIcon{
+    color: #F0C808;
+}
+
+/* ---------------------------------- */
+
+.paymentContainer{
+    background-color: #449CFC;
+    padding: 70px 0;
+}
+
+.paymentContainer h3{
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: white;
+}
+
+.paymentButton{
+
+}
