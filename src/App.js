@@ -1,11 +1,11 @@
 import './App.css';
-import HeaderComponent from "./components/HeaderComponent";
 import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import PaymentPage from "./pages/PaymentPage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
                 <Route path={"/info"} element={<AboutPage/>}/>
                 <Route path={"*"} element={<ErrorPage/>}/>
             </Route>
+            <Route path={'/login'} Component={AuthPage}/>
         </Routes>
     </div>
   );

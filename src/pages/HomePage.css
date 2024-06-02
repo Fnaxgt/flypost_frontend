@@ -29,7 +29,7 @@
     background-color: #0077FF;
     display: inline-block;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     margin: 50px 0;
     border: none;
     border-radius: 15px;
@@ -37,14 +37,25 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
+    position: relative;
+    z-index: 1;
 }
 
 .downloadButton:hover{
     background-color: #0055FF;
 }
 
+.downloadButton:hover .iconBackground{
+    background-color: #ceac07;
+}
+
 .downloadButton a span{
-    margin-right: 15px;
+    margin-right: 40px;
+}
+
+.downloadButton a{
+    color: white;
+    text-decoration: none;
 }
 
 .downloadButton a:hover{
@@ -53,10 +64,19 @@
 
 .downloadIcon{
     transition: 0.2s;
+    z-index: 2;
 }
 
-.downloadButton:hover .downloadIcon{
-    color: #F0C808;
+.iconBackground{
+    background-color: #F0C808;
+    height: 100%;
+    position: absolute;
+    width: 66px;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 0 14px 14px 0;
+    transition: 0.2s;
 }
 
 /* ---------------------------------- */
@@ -74,5 +94,81 @@
 }
 
 .paymentButton{
+    width: 85%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 20px;
+}
 
+.paymentButton:hover{
+    background-color: #F0C808;
+    color: white;
+}
+
+.paymentButton .paymentIcon{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    z-index: 2;
+}
+
+.paymentButton span{
+    margin-left: 90px;
+    text-decoration: none;
+}
+
+.paymentButton .iconBackground{
+    background-color: #F0C808;
+    height: 100%;
+    position: absolute;
+    width: 40%;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 0 14px 14px 0;
+    transition: 0.2s;
+}
+
+/* ---------------------------------- */
+
+.infoContainer{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.infoContainer .subInfo{
+    background-color: white;
+}
+
+.infoContainer h3{
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: black;
+}
+
+.subInfo{
+    margin: 20px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.subInfo .horLine{
+    background-color: #F0C808;
+    width: 100%;
+    height: 5px;
+}
+
+.subInfo p{
+    text-align: justify;
 }

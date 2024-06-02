@@ -1,5 +1,3 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import {NavLink} from "react-router-dom";
 
 import './HeaderComponent.css';
@@ -16,11 +14,11 @@ const HeaderComponent = () => {
                 <div className={"logo"}>
                     <img src={wlogo} alt="logo"/>
                 </div>
-                <NavLink to={'/'}>Головна</NavLink>
-                <NavLink to={'/payment'}>Оплата посилки</NavLink>
-                <NavLink to={'/info'}>Інформація</NavLink>
-                <div className="authContainer">
-                    <NavLink to={'/login'}>Увійти</NavLink>
+                <NavLink to={'/'} className={"navButton"}>Головна</NavLink>
+                <NavLink to={'/payment'} className={"navButton"}>Оплата посилки</NavLink>
+                <NavLink to={'/info'} className={"navButton"}>Інформація</NavLink>
+                <div className="authButton">
+                    <NavLink to={'/login'} className={"navButton"}>Увійти</NavLink>
                     <FontAwesomeIcon icon={faRightToBracket} className={"logInIcon"}/>
                 </div>
             </nav>

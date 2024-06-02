@@ -22,20 +22,23 @@ img{
     height: 70px;
 }
 
-a{
-    text-decoration: none;
+.navButton{
     padding: 0 10px;
     font-size: 24px;
-    color: white;
-    transition: 0.2s;
     font-weight: 600;
+    text-decoration: none;
+    color: white;
 }
 
-a:hover{
+.navButton:hover{
     color: #F0C808;
 }
 
-.authContainer{
+.active{
+    color: #F0C808;
+}
+
+.authButton{
     color: white;
     position: absolute;
     right: 30px;
@@ -48,6 +51,6 @@ a:hover{
     transition: 0.2s;
 }
 
-.authContainer:hover .logInIcon{
+.authButton:hover .logInIcon{
     color: #F0C808;
 }

@@ -1,0 +1,32 @@
+.inputComponent{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.defaultLabel{
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.defaultInput{
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #d2d5da;
+    font-size: 16px;
+    color: black;
+}
+
+.defaultInput::placeholder{
+    color: #4B5563;
+}
+
+.errorMessage{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
