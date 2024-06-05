@@ -6,6 +6,7 @@ import PaymentPage from "./pages/PaymentPage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import AuthPage from "./pages/AuthPage";
+import PackagesPage from "./pages/PackagesPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path={"/"} element={<HomePage/>}/>
                 <Route path={"/payment"} element={<PaymentPage/>}/>
                 <Route path={"/info"} element={<AboutPage/>}/>
+                <Route path={"/packages"} element={<PackagesPage/>}/>
                 <Route path={"*"} element={<ErrorPage/>}/>
             </Route>
             <Route path={'/login'} Component={AuthPage}/>

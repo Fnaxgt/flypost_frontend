@@ -10,7 +10,7 @@ import {NavLink} from "react-router-dom";
 
 const HomePage = () => {
     return (
-        <div className={"container"}>
+        <div className={"homeContainer"}>
             <img className={"pageLogo"} src={blogo} alt="logo"/>
             <h1>FLYPOST</h1>
             <h2>Доставляємо швидко, наче повітрям!</h2>

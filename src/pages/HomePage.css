@@ -3,23 +3,23 @@
     height: 150px;
 }
 
-.container{
+.homeContainer{
     margin-top: 15px;
 }
 
-.container h1{
+.homeContainer h1{
     font-size: 118px;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
-.container h2{
+.homeContainer h2{
     font-size: 32px;
     margin-bottom: 20px;
     font-weight: 600;
 }
 
-.container h3{
+.homeContainer h3{
     font-size: 24px;
     margin-bottom: 20px;
     font-weight: 500;

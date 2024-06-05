@@ -1,0 +1,82 @@
+.aboutPage{
+    background-color: #449CFC;
+    height: 89.7%;
+}
+
+.aboutContainer{
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.infoSubContainer{
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 15px;
+}
+
+.infoHorLine{
+    width: 100%;
+    height: 3px;
+    background-color: #F0C808;
+    margin: 10px 0;
+}
+
+.infoSubContainer h3{
+    text-align: left;
+}
+
+.infoSubContainer p{
+    text-align: justify;
+}
+
+.info1, .info4{
+    width: 64%;
+}
+
+.info2, .info3{
+    width: 34%;
+}
+
+.aboutFooter{
+    background-color: black;
+    height: 40%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    color: white;
+}
+
+.footerContacts{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 28px;
+}
+
+.footerContacts h3{
+    margin-bottom: 10px;
+    font-size: 48px;
+}
+
+.footerContacts img{
+    width: 100px;
+    height: 120px;
+
+}
+
+.companyName{
+    font-size: 128px;
+}
+
+.footerInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
