@@ -1,0 +1,66 @@
+.packageItem{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-around;
+    border: 1px solid #d2d5da;
+    border-radius: 15px;
+}
+
+.packageNumber{
+    margin: 0 20px;
+
+}
+
+.verPackageLine{
+    height: 100px;
+    width: 1px;
+    background-color: #d2d5da;
+}
+
+.usersContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.packageUser{
+    margin: 0 30px;
+}
+
+.packageUser p{
+    margin: 0;
+}
+
+.packageUser h4{
+    font-size: 22px;
+}
+
+.statusContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.statusContainer svg{
+    margin: 0 20px;
+}
+
+.packageItemActions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.packageItemActions div:first-child{
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.packageItemActions div:last-child{
+    width: 100px;
+    margin-right: 20px;
+    margin-left: 10px;
+}

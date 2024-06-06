@@ -46,6 +46,10 @@ img{
     align-items: center;
 }
 
+.authButton h3{
+    color: red;
+}
+
 .logInIcon{
     font-size: 38px;
     transition: 0.2s;

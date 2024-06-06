@@ -5,12 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
+import AuthProvider from 'react-auth-kit';
+import createStore from "react-auth-kit/createStore";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const store = createStore({
+    authName: 'auth',
+    authType:'cookie',
+    cookieDomain: window.location.hostname,
+    cookieSecure: false
+});
+
 root.render(
   <React.StrictMode>
-      <BrowserRouter>
-            <App/>
-      </BrowserRouter>
+        <AuthProvider store={store}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </AuthProvider>
   </React.StrictMode>
 );
 

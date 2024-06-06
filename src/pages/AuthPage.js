@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './AuthPage.css';
 import InputComponent from "../components/InputComponent";
@@ -6,17 +6,40 @@ import InputComponent from "../components/InputComponent";
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GoogleButton from "../components/GoogleButton";
+import axios from "axios";
+import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 const AuthPage = () => {
     const [valid, setValid] = useState(true);
-    const handleSubmit = (e) => {
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+    const signIn = useSignIn();
+
+    useEffect(() => {
+        setValid(true);
+    }, [login, password]);
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submitted");
-        if(false){
-            setValid(true);
-        }
-        else{
+        try {
+            const response = await axios.post('/auth/login', { login, password });
+            if (response.status === 200 && response.data.token) {
+                const isSignInSuccess = signIn({
+                    token: response.data.token,
+                    expiresIn: 3600,
+                    tokenType: "Bearer",
+                    authState: { username: response.data.username, role: response.data.role }
+                });
+                if (isSignInSuccess) {
+                    console.log("User signed in successfully");
+                } else {
+                    console.log("Sign in failed");
+                }
+            } else {
+                setValid(false);
+            }
+        } catch (error) {
             setValid(false);
+            console.error("Error during authentication:", error);
         }
     }
 
@@ -40,6 +63,7 @@ const AuthPage = () => {
                             placeholder={"Введіть логін..."}
                             error={"Неправильний логін або пароль"}
                             valid={valid}
+                            onChange={(e) => setLogin(e.target.value)}
                         ></InputComponent>
                         <InputComponent
                             className={"authInput"}
@@ -51,6 +75,7 @@ const AuthPage = () => {
                             placeholder={"Введіть пароль..."}
                             error={"Неправильний логін або пароль"}
                             valid={valid}
+                            onChange={(e) => setPassword(e.target.value)}
                         ></InputComponent>
                         <button type="submit" className={"btn btn-primary"}>Увійти</button>
                     </form>

@@ -1,0 +1,81 @@
+.paymentCardContainer{
+    padding: 20px 100px;
+    height: 89.7%;
+    text-align: left;
+}
+
+.paymentPackageIdInput{
+    margin-bottom: 20px;
+}
+
+.paymentDataFields{
+    background-color: #F0C808;
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+
+.paymentDataCreditCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.creditCardTypeSelector{
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.creditCardType{
+    padding: 10px 20px;
+}
+
+.creditCardType:hover{
+    cursor: pointer;
+    background-color: #d2d5da;
+    border-radius: 15px;
+}
+
+.creditCardType img{
+    width: 100%;
+    height: 100%;
+}
+.additionalCardData{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.paymentCardDate, .paymentCardCVV{
+    width: 100px !important;
+}
+
+.paymentCardDate{
+    margin-right: 10px;
+}
+
+.payInput{
+    width: 100% !important;
+    margin-bottom: 15px;
+}
+
+.paymentSeparator{
+    font-size: 72px;
+    font-weight: 700;
+}
+
+.paymentGooglePay{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
