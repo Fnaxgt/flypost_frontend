@@ -5,6 +5,7 @@ import axios from "axios";
 import PackageComponent from "../components/PackageComponent";
 
 import './PackagesPage.css';
+import {NavLink} from "react-router-dom";
 
 const PackagesPage = () => {
     const [packages, setPackages] = useState([]);
@@ -55,7 +56,9 @@ const PackagesPage = () => {
         <div className={"packagesContainer"}>
             <h1>Список активних посилок</h1>
             <div className="managerContainer">
-                <div className="btn btn-primary">Створити відправлення +</div>
+                <div>
+                    <NavLink to={'/createPackage'} className="btn btn-primary">Створити відправлення +</NavLink>
+                </div>
                 <ComboboxComponent
                     options={cities}
                     onSelect={(id) => console.log(id)}

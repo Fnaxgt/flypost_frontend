@@ -9,6 +9,7 @@ import AuthPage from "./pages/AuthPage";
 import PackagesPage from "./pages/PackagesPage";
 import CreatePackagePage from "./pages/CreatePackagePage";
 import EmployeesPage from "./pages/EmployeesPage";
+import CreateEmployeePage from "./pages/CreateEmployeePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path={"/packages"} element={<PackagesPage/>}/>
                 <Route path={"/createPackage"} element={<CreatePackagePage/>}/>
                 <Route path={"/employees"} element={<EmployeesPage/>}/>
+                <Route path={"/createEmployee"} element={<CreateEmployeePage/>}/>
                 <Route path={"*"} element={<ErrorPage/>}/>
             </Route>
             <Route path={'/login'} Component={AuthPage}/>
