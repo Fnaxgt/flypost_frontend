@@ -1,0 +1,102 @@
+.createPackageContainer{
+    height: 100%;
+    text-align: left;
+    padding: 25px;
+}
+
+.createPackageContainer h2{
+    margin-bottom: 20px;
+    color: #4B5563;
+    font-size: 20px;
+}
+
+.infoContainersPackage{
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: 15px;
+    padding: 0 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.packageHorizontalLine{
+    height: 80%;
+    width: 1px;
+    background-color: #D1D5DB;
+}
+
+.senderPackageInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 30%;
+}
+
+.infoContainersPackage h1{
+    margin-bottom: 20px;
+}
+
+.packageInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    flex-direction: column;
+}
+
+.packageSizeContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.packageWeightContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.packageCheckbox{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pInput{
+    width: 30%;
+}
+
+.pWeight{
+    width: 50%;
+}
+
+.pPrice{
+    width:90%;
+}
+
+.receiverPackageInfo{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmButtonDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.confirmButton{
+    font-size: 24px;
+}
