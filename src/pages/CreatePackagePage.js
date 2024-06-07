@@ -7,25 +7,127 @@ import axios from "axios";
 
 const CreatePackagePage = () => {
     const [offices, setOffices] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        axios.get('https://localhost:3001/offices')
+    const [senderFirstName, setSenderFirstName] = useState('');
+    const [senderEmail, setSenderEmail] = useState('');
+    const [senderPhone, setSenderPhone] = useState('');
+
+    const [packageLength, setPackageLength] = useState('');
+    const [packageWidth, setPackageWidth] = useState('');
+    const [packageHeight, setPackageHeight] = useState('');
+    const [packageWeight, setPackageWeight] = useState('');
+    const [packagePrice, setPackagePrice] = useState('');
+    const [isFragile, setIsFragile] = useState(false);
+    const [isMoisture, setIsMoisture] = useState(false);
+
+    const [receiverName, setReceiverName] = useState('');
+    const [receiverEmail, setReceiverEmail] = useState('');
+    const [receiverPhone, setReceiverPhone] = useState('');
+    const [officeId, setOfficeId] = useState('');
+
+    const handleInputChange = (event) => {
+        console.log(event.target.name)
+        switch (event.target.name) {
+            case 'senderFirstName':
+                setSenderFirstName(event.target.value);
+                break;
+            case 'senderEmail':
+                setSenderEmail(event.target.value);
+                break;
+            case 'senderPhone':
+                setSenderPhone(event.target.value);
+                break;
+            case 'packageLength':
+                setPackageLength(event.target.value);
+                break;
+            case 'packageWidth':
+                setPackageWidth(event.target.value);
+                break;
+            case 'packageHeight':
+                setPackageHeight(event.target.value);
+                break;
+            case 'packageWeight':
+                setPackageWeight(event.target.value);
+                break;
+            case 'packagePrice':
+                setPackagePrice(event.target.value);
+                break;
+            case 'receiverName':
+                setReceiverName(event.target.value);
+                break;
+            case 'receiverEmail':
+                setReceiverEmail(event.target.value);
+                break;
+            case 'receiverPhone':
+                setReceiverPhone(event.target.value);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleCheckboxChange = (event) => {
+        switch (event.target.name) {
+            case 'fragile':
+                setIsFragile(event.target.checked);
+                break;
+            case 'moisture':
+                setIsMoisture(event.target.checked);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleComboboxChange = (event) => {
+        setOfficeId(event.target.value);
+    }
+
+    const handleConfirmation = () => {
+        const packageData = {
+            sender: {
+                firstName: senderFirstName,
+                email: senderEmail,
+                phone: senderPhone
+            },
+            package: {
+                length: packageLength,
+                width: packageWidth,
+                height: packageHeight,
+                weight: packageWeight,
+                price: packagePrice,
+                isFragile: isFragile,
+                isMoisture: isMoisture
+            },
+            receiver: {
+                name: receiverName,
+                email: receiverEmail,
+                phone: receiverPhone,
+                officeId: officeId
+            }
+        };
+
+        console.log(packageData);
+
+        axios.post('https://localhost:3001/packages', packageData)
             .then((response) => {
-                setOffices(response.data);
-                setLoading(false);
+                console.log(response);
             })
             .catch((error) => {
-                setError(error);
-                setLoading(false);
+                console.log(error);
             });
-
-    }, []);
-
-    function handleConfirmation() {
-        console.log("Package created");
     }
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/office')
+            .then((response) => {
+                setOffices(response.data);
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     return (
         <div className={'createPackageContainer'}>
@@ -42,6 +144,7 @@ const CreatePackagePage = () => {
                         name={"senderFirstName"}
                         required={true}
                         placeholder={"Введіть ПІБ..."}
+                        onChange={handleInputChange}
                     />
                     <InputComponent
                         className={"sEmail"}
@@ -51,15 +154,17 @@ const CreatePackagePage = () => {
                         name={"senderEmail"}
                         required={true}
                         placeholder={"Введіть елктронну пошту..."}
+                        onChange={handleInputChange}
                     />
                     <InputComponent
                         className={"sPhone"}
-                        id={"senderFirstName"}
-                        label={"ПІБ відправника"}
+                        id={"senderPhone"}
+                        label={"Телефон відправника"}
                         type={"text"}
-                        name={"senderFirstName"}
+                        name={"senderPhone"}
                         required={true}
-                        placeholder={"Введіть ПІБ..."}
+                        placeholder={"Введіть телефон..."}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className="packageHorizontalLine"></div>
@@ -73,6 +178,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageLength"}
                             required={true}
+                            onChange={handleInputChange}
                         />
                         <InputComponent
                             className={"pInput"}
@@ -81,6 +187,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageWidth"}
                             required={true}
+                            onChange={handleInputChange}
                         />
                         <InputComponent
                             className={"pInput"}
@@ -89,6 +196,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageHeight"}
                             required={true}
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="packageWeightContainer">
@@ -100,13 +208,14 @@ const CreatePackagePage = () => {
                             name={"packageWeight"}
                             required={true}
                             placeholder={"Вага в кг"}
+                            onChange={handleInputChange}
                         />
                         <div className="packageCheckbox">
-                            <input type="checkbox" id="fragile" name="fragile"/>
+                            <input type="checkbox" id="fragile" name="fragile" onChange={handleCheckboxChange}/>
                             <label htmlFor="fragile">Крихке</label>
                         </div>
                         <div className="packageCheckbox">
-                            <input type="checkbox" id="moisture" name="moisture"/>
+                            <input type="checkbox" id="moisture" name="moisture" onChange={handleCheckboxChange}/>
                             <label htmlFor="moisture">Берегти від вологи</label>
                         </div>
                     </div>
@@ -118,6 +227,7 @@ const CreatePackagePage = () => {
                         name={"packagePrice"}
                         required={true}
                         placeholder={"Ціна в грн"}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className="packageHorizontalLine"></div>
@@ -131,6 +241,7 @@ const CreatePackagePage = () => {
                         name={"receiverName"}
                         required={true}
                         placeholder={"Введіть ПІБ..."}
+                        onChange={handleInputChange}
                     />
                     <InputComponent
                         className={"rEmail"}
@@ -140,6 +251,7 @@ const CreatePackagePage = () => {
                         name={"receiverEmail"}
                         required={true}
                         placeholder={"Введіть електронну пошту..."}
+                        onChange={handleInputChange}
                     />
                     <InputComponent
                         className={"rPhone"}
@@ -149,10 +261,18 @@ const CreatePackagePage = () => {
                         name={"receiverPhone"}
                         required={true}
                         placeholder={"Введіть телефон..."}
+                        onChange={handleInputChange}
                     />
                     <ComboboxComponent
-                        options={offices}
-                        onSelect={(id) => console.log(id)}
+                        options={
+                            offices.map((office) => {
+                                return {
+                                    id: office.id,
+                                    name: `№${office.office_number}, ${office.address}`
+                                }
+                            })
+                        }
+                        onChange={handleComboboxChange}
                         label={"Відділення"}
                     ></ComboboxComponent>
                 </div>
