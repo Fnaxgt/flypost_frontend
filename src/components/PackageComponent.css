@@ -5,11 +5,12 @@
     justify-content: space-around;
     border: 1px solid #d2d5da;
     border-radius: 15px;
+    margin: 10px;
 }
 
 .packageNumber{
-    margin: 0 20px;
-
+    width: 250px;
+    text-align: center;
 }
 
 .verPackageLine{
@@ -26,7 +27,7 @@
 }
 
 .packageUser{
-    margin: 0 30px;
+    width: 350px;
 }
 
 .packageUser p{

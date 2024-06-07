@@ -4,8 +4,13 @@ import './CreatePackagePage.css';
 import InputComponent from "../components/InputComponent";
 import ComboboxComponent from "../components/ComboboxComponent";
 import axios from "axios";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 const CreatePackagePage = () => {
+    const auth = useAuthUser();
+
+    const username = auth ? auth.username : null;
+
     const [offices, setOffices] = useState([]);
 
     const [senderFirstName, setSenderFirstName] = useState('');
@@ -84,32 +89,30 @@ const CreatePackagePage = () => {
     }
 
     const handleConfirmation = () => {
+        // add isFragile and isMoisture to description string
+        const packageDescription = `Крихке: ${isFragile ? 'Так' : 'Ні'}, Берегти від вологи: ${isMoisture ? 'Так' : 'Ні'}`;
         const packageData = {
             sender: {
-                firstName: senderFirstName,
                 email: senderEmail,
-                phone: senderPhone
             },
             package: {
                 length: packageLength,
                 width: packageWidth,
                 height: packageHeight,
                 weight: packageWeight,
-                price: packagePrice,
-                isFragile: isFragile,
-                isMoisture: isMoisture
+                insurance: packagePrice,
+                description: packageDescription
             },
             receiver: {
-                name: receiverName,
                 email: receiverEmail,
-                phone: receiverPhone,
                 officeId: officeId
-            }
+            },
+            username: username
         };
 
         console.log(packageData);
 
-        axios.post('https://localhost:3001/packages', packageData)
+        axios.post('http://localhost:3001/packages', packageData)
             .then((response) => {
                 console.log(response);
             })
@@ -119,9 +122,10 @@ const CreatePackagePage = () => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3001/office')
+        axios.get('http://localhost:3001/offices')
             .then((response) => {
                 setOffices(response.data);
+                setOfficeId(response.data[0].id);
                 console.log(response.data);
             })
             .catch((error) => {
@@ -144,6 +148,7 @@ const CreatePackagePage = () => {
                         name={"senderFirstName"}
                         required={true}
                         placeholder={"Введіть ПІБ..."}
+                        value={senderFirstName}
                         onChange={handleInputChange}
                     />
                     <InputComponent
@@ -154,6 +159,7 @@ const CreatePackagePage = () => {
                         name={"senderEmail"}
                         required={true}
                         placeholder={"Введіть елктронну пошту..."}
+                        value={senderEmail}
                         onChange={handleInputChange}
                     />
                     <InputComponent
@@ -164,6 +170,7 @@ const CreatePackagePage = () => {
                         name={"senderPhone"}
                         required={true}
                         placeholder={"Введіть телефон..."}
+                        value={senderPhone}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -178,6 +185,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageLength"}
                             required={true}
+                            value={packageLength}
                             onChange={handleInputChange}
                         />
                         <InputComponent
@@ -187,6 +195,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageWidth"}
                             required={true}
+                            value={packageWidth}
                             onChange={handleInputChange}
                         />
                         <InputComponent
@@ -196,6 +205,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageHeight"}
                             required={true}
+                            value={packageHeight}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -207,6 +217,7 @@ const CreatePackagePage = () => {
                             type={"text"}
                             name={"packageWeight"}
                             required={true}
+                            value={packageWeight}
                             placeholder={"Вага в кг"}
                             onChange={handleInputChange}
                         />
@@ -227,6 +238,7 @@ const CreatePackagePage = () => {
                         name={"packagePrice"}
                         required={true}
                         placeholder={"Ціна в грн"}
+                        value={packagePrice}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -241,6 +253,7 @@ const CreatePackagePage = () => {
                         name={"receiverName"}
                         required={true}
                         placeholder={"Введіть ПІБ..."}
+                        value={receiverName}
                         onChange={handleInputChange}
                     />
                     <InputComponent
@@ -251,6 +264,7 @@ const CreatePackagePage = () => {
                         name={"receiverEmail"}
                         required={true}
                         placeholder={"Введіть електронну пошту..."}
+                        value={receiverEmail}
                         onChange={handleInputChange}
                     />
                     <InputComponent
@@ -261,6 +275,7 @@ const CreatePackagePage = () => {
                         name={"receiverPhone"}
                         required={true}
                         placeholder={"Введіть телефон..."}
+                        value={receiverPhone}
                         onChange={handleInputChange}
                     />
                     <ComboboxComponent

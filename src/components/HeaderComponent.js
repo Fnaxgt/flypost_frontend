@@ -16,10 +16,11 @@ const HeaderComponent = () => {
 
     const handleSignOut = () => {
         signOut();
+        window.location.reload();
     }
 
     const username = auth ? auth.username : null;
-    const role = auth ? auth.role : 2; //TODO: change to 0
+    const role = auth ? auth.role : 0;
     return (
         <header>
             <nav>
@@ -44,7 +45,7 @@ const HeaderComponent = () => {
                         {role >= 2 && (
                             <h3>Адміністратор</h3>
                         )}
-                        <button onClick={handleSignOut} className={"navButton"}>Вийти</button>
+                        <div onClick={handleSignOut} className={"navButton"}>Вийти</div>
                         <FontAwesomeIcon icon={faRightFromBracket} className={"logOutIcon"}/>
                     </div>
                 ) : (

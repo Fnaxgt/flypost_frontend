@@ -14,11 +14,12 @@ const PaymentPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const [packageId, setPackageId] = React.useState(searchParams.get('packageId'));
-    const [packageData, setPackageData] = React.useState(null);
     const [cardNumber, setCardNumber] = React.useState("");
     const [cardDate, setCardDate] = React.useState("");
     const [cardCVV, setCardCVV] = React.useState("");
     const [cardHolder, setCardHolder] = React.useState("");
+
+    const [packagePrice, setPackagePrice] = React.useState(null);
 
     const [cardNumberValid, setCardNumberValid] = React.useState(false);
     const [cardDateValid, setCardDateValid] = React.useState(false);
@@ -32,15 +33,20 @@ const PaymentPage = () => {
     }
     useEffect(() => {
         if (packageId) {
-            axios.get(`https://localhost:3001/packages/${packageId}`)
+            axios.get(`http://localhost:3001/packagePrice/${packageId}`)
                 .then((response) => {
-                    setPackageData(response.data);
+                    try {
+                        setPackagePrice(response.data.price);
+                    }
+                    catch (error) {
+                        setPackagePrice(null);
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         } else {
-            setPackageData(0);
+            setPackagePrice(null);
         }
     }, [packageId]);
 
@@ -84,9 +90,15 @@ const PaymentPage = () => {
                 required={true}
                 placeholder={"Введіть номер посилки..."}
                 error={"Посилка не знайдена"}
-                valid={packageData !== null}
+                valid={packagePrice !== null}
+                value={packageId}
                 onChange={(e) => setPackageId(e.target.value)}
             />
+            <div className="paymentPackagePrice">
+                <p>
+                    Вартість посилки: {packagePrice} грн
+                </p>
+            </div>
             <div className="paymentDataFields">
                 <div className="paymentDataCreditCard">
                     <div className="creditCardTypeSelector">
@@ -110,6 +122,7 @@ const PaymentPage = () => {
                         placeholder={"Введіть номер картки..."}
                         error={"Неправильний номер картки"}
                         valid={cardNumberValid}
+                        value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
                     />
                     <div className="additionalCardData">
@@ -123,6 +136,7 @@ const PaymentPage = () => {
                             placeholder={"MM/YY"}
                             error={"Неправильний термін дії"}
                             valid={cardDateValid}
+                            value={cardDate}
                             onChange={(e) => setCardDate(e.target.value)}
                         />
                         <InputComponent
@@ -134,6 +148,7 @@ const PaymentPage = () => {
                             required={true}
                             placeholder={"CVV"}
                             valid={true}
+                            value={cardCVV}
                             onChange={(e) => setCardCVV(e.target.value)}
                         />
                     </div>
@@ -147,11 +162,13 @@ const PaymentPage = () => {
                         placeholder={"Введіть ім'я власника..."}
                         error={"Неправильне ім'я власника"}
                         valid={true}
+                        value={cardHolder}
                         onChange={(e) => setCardHolder(e.target.value)}
                     />
                     <button className="btn btn-primary paymentConfirmButton" onClick={handlePayment}
                             disabled={!cardNumberValid || !cardDateValid || !cardHolder || !cardCVV}
-                    >Сплатити</button>
+                    >Сплатити
+                    </button>
 
                 </div>
                 <div className="paymentSeparator">

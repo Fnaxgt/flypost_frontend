@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import InputComponent from "../components/InputComponent";
 import ComboboxComponent from "../components/ComboboxComponent";
 import axios from "axios";
 import PackageComponent from "../components/PackageComponent";
@@ -18,7 +17,7 @@ const PackagesPage = () => {
     const [selectedOffice, setSelectedOffice] = useState(null);
 
     useEffect(() => {
-        axios.get('https://localhost:3001/packages')
+        axios.get('http://localhost:3001/packages')
             .then((response) => {
                 setPackages(response.data);
                 setLoading(false);
@@ -30,10 +29,11 @@ const PackagesPage = () => {
     }, [selectedCity, selectedOffice]);
 
     useEffect(() => {
-        axios.get('https://localhost:3001/cities')
+        axios.get('http://localhost:3001/cities')
             .then((response) => {
                 setCities(response.data);
                 setLoading(false);
+                setSelectedCity(response.data[0].id);
             })
             .catch((error) => {
                 setError(error);
@@ -42,16 +42,18 @@ const PackagesPage = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('https://localhost:3001/offices')
+        axios.get('http://localhost:3001/offices')
             .then((response) => {
                 setOffices(response.data);
                 setLoading(false);
+                setSelectedOffice(response.data[0].id);
             })
             .catch((error) => {
                 setError(error);
                 setLoading(false);
             });
     }, []);
+
     return (
         <div className={"packagesContainer"}>
             <h1>Список активних посилок</h1>
@@ -61,12 +63,18 @@ const PackagesPage = () => {
                 </div>
                 <ComboboxComponent
                     options={cities}
-                    onSelect={(id) => console.log(id)}
                     label={"Місто"}
+                    onSelect={(event) => setSelectedCity(event.target.value)}
                 />
                 <ComboboxComponent
-                    options={offices}
-                    onSelect={(id) => console.log(id)}
+                    options={
+                        offices
+                            .map((office) => ({
+                                id: office.id,
+                                name: `#${office.office_number}, ${office.address}`
+                            }))
+                    }
+                    onSelect={(event) => setSelectedOffice(event.target.value)}
                     label={"Відділення"}
                 />
             </div>
@@ -91,11 +99,16 @@ const PackagesPage = () => {
                 />
                 {packages && packages.map((packageItem) => (
                     <PackageComponent
+                        key={packageItem.id}
                         id={packageItem.id}
-                        sender={packageItem.sender}
-                        receiver={packageItem.receiver}
-                        receiverAddress={packageItem.receiverAddress}
-                        currentAddress={packageItem.currentAddress}
+                        sender={
+                            `${packageItem.sender_first_name} ${packageItem.sender_last_name}${packageItem.sender_middle_name ? ` ${packageItem.sender_middle_name}` : ""}`
+                        }
+                        receiver={
+                            `${packageItem.recipient_first_name} ${packageItem.recipient_last_name}${packageItem.recipient_middle_name ? ` ${packageItem.recipient_middle_name}` : ""}`
+                        }
+                        receiverAddress={packageItem.send_to}
+                        currentAddress={packageItem.current_position}
                         paymentId={packageItem.paymentId}
                     />
                 ))}

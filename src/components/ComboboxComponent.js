@@ -7,7 +7,7 @@ const ComboboxComponent = (props) => {
     return (
         <div className="comboboxComponent">
             {label && <label className="comboboxLabel">{label}</label>}
-            <select className="comboboxSelect" onChange={onChange}>
+            <select className="comboboxSelect" onChange={onChange} onSelect={onChange}>
                 {options && options.map((option) => (
                     <option key={option.id} value={option.id}>
                         {option.name}

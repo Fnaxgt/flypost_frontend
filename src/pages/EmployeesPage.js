@@ -10,16 +10,6 @@ const EmployeesPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const testEmployee = {
-        id: 1,
-        last_name: "Іванов",
-        first_name: "Іван",
-        middle_name: "Іванович",
-        login: "ivanov",
-        office_id: 1,
-        start_work: "2021-01-01"
-    }
-
     useEffect(() => {
         axios.get('http://localhost:3001/employees')
             .then((response) => {
@@ -32,6 +22,17 @@ const EmployeesPage = () => {
             });
 
     }, []);
+
+    const deleteEmployee = (id) => {
+        axios.delete(`http://localhost:3001/employees/${id}`)
+            .then(() => {
+                setEmployees(employees.filter(employee => employee.id !== id));
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     return (
         <div className={"employeesContainer"}>
             <h1>Список співробітників</h1>
@@ -62,11 +63,8 @@ const EmployeesPage = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <EmployeeComponent
-                    employee={testEmployee}
-                />
                 {employees.map((employee) => {
-                    return <EmployeeComponent key={employee.id} employee={employee}/>
+                    return <EmployeeComponent key={employee.id} employee={employee} deleteEmployee={deleteEmployee}/>
                 })}
                 </tbody>
             </table>

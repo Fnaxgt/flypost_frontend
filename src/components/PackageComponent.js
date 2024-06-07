@@ -5,6 +5,7 @@ import './PackageComponent.css';
 import { faTruck, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const PackageComponent = (props) => {
     const { id, sender, receiver, receiverAddress, currentAddress, paymentId } = props;
@@ -19,6 +20,16 @@ const PackageComponent = (props) => {
 
     const handlePayPackage = () => {
         navigate(`/payment/?packageId=${id}`);
+    }
+
+    const handleDeletePackage = () => {
+        axios.delete(`http://localhost:3001/packages/${id}`)
+            .then(() => {
+                console.log("Package deleted");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
@@ -47,7 +58,7 @@ const PackageComponent = (props) => {
             </div>
             <div className="packageItemActions">
                 <div id={"payPackageButton"} className={!paymentId ? "btn btn-primary" : "btn btn-primary disabled"} onClick={handlePayPackage}>Оплата</div>
-                <div id={"deletePackageButton"} className={isDeliverable ? "btn btn-danger" : "btn btn-danger disabled"}>Видати</div>
+                <div id={"deletePackageButton"} className={isDeliverable ? "btn btn-danger" : "btn btn-danger disabled"} onClick={handleDeletePackage}>Видати</div>
             </div>
         </div>
     );
