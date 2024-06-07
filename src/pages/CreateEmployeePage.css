@@ -1,0 +1,30 @@
+.createEmployeeContainer{
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nameInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameInfo>div{
+    margin: 20px
+}
+
+.createEmployeeButtonArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.createEmployeeButton{
+    margin: 0 20px;
+    font-size: 24px;
+    width: 150px;
+}

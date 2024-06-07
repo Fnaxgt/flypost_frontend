@@ -27,7 +27,7 @@ const AuthPage = () => {
                     token: response.data.token,
                     expiresIn: 3600,
                     tokenType: "Bearer",
-                    authState: { username: response.data.username, role: response.data.role }
+                    authState: { username: response.data.login, role: response.data.role }
                 });
                 if (isSignInSuccess) {
                     console.log("User signed in successfully");

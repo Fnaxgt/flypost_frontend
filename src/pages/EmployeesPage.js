@@ -17,7 +17,6 @@ const EmployeesPage = () => {
         middle_name: "Іванович",
         login: "ivanov",
         office_id: 1,
-        // start work in Date
         start_work: "2021-01-01"
     }
 

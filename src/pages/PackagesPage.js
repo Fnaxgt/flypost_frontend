@@ -71,8 +71,16 @@ const PackagesPage = () => {
                 />
             </div>
             <div className="packagesList">
-                {loading && <div>Loading...</div>}
-                {error && <div>Error: {error.message}</div>}
+                <div className="loaderContainer">
+                    {loading && <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>}
+                </div>
+                <div className="errorContainer">
+                    {error && <div className="alert alert-danger" role="alert">
+                        {error.message}
+                    </div>}
+                </div>
                 <PackageComponent
                     id={200004008}
                     sender={"Шумейко Антон Олександрович"}
